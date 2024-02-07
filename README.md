@@ -10,6 +10,9 @@ git clone https://github.com/3d-omics/AMAC004_probe_validation.git
 ## Get reads
 
 ```sh
+# Create screen session
+screen -S probe_validation
+
 cd resources/reads
 
 # D300418 | G069 | TG3 | 28
@@ -30,9 +33,8 @@ cd ../../
 ## Run pipeline
 
 ```sh
-# Create screen session
-screen -S probe_validation
-# screen -r probe_validation #if re-starting the session
+# Resume screen session
+screen -r probe_validation
 
 # Load dependencies mamba and snakemake (not needed if they are already installed in root)
 module load mamba/1.5.6 snakemake/7.20.0
