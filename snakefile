@@ -13,7 +13,7 @@ print(SAMPLE)
 rule all:
     input:
         "results/coverm/counts.tsv"
-        
+
 ################################################################################
 ### Filter reads with fastp
 rule fastp:
@@ -57,17 +57,17 @@ rule fastp:
         """
 
 ################################################################################
-## Index Unite database:
+## Index reference:
 rule bowtie_index:
     input:
-        "resources/database/reference.fa"
+        "resources/reference/reference.fa"
     output:
-        touch('resources/database/index.done') # Flag file
+        touch('resources/reference/index.done') # Flag file
     conda:
         "environment.yaml"
     params:
         jobname = "mags_index",
-        database = "resources/database/reference"
+        reference = "resources/reference/reference"
     threads:
         24
     resources:
@@ -76,31 +76,31 @@ rule bowtie_index:
     log:
         "logs/unite_index.log"
     message:
-        "Indexing unite database with Bowtie2"
+        "Indexing reference with Bowtie2"
     shell:
         """
         # Index MAG gene catalogue
         bowtie2-build \
             --large-index \
             --threads {threads} \
-            {input} {params.database} \
+            {input} {params.reference} \
         &> {log}
 
 
         """
-        
+
 ################################################################################
 ### Map non-host reads to DRAM genes files using Bowtie2
 rule bowtie_mapping:
     input:
-        idx = "resources/database/index.done",
+        idx = "resources/reference/index.done",
         r1 = "results/fastp/{sample}_1.fq.gz",
         r2 = "results/fastp/{sample}_2.fq.gz",
     output:
         bam = "results/bowtie/{sample}.bam"
     params:
         jobname = "mags_{sample}",
-        database = "resources/database/reference"
+        reference = "resources/reference/reference"
     conda:
         "environment.yaml"
     threads:
@@ -118,7 +118,7 @@ rule bowtie_mapping:
         bowtie2 \
             --time \
             --threads {threads} \
-            -x {params.database} \
+            -x {params.reference} \
             -1 {input.r1} \
             -2 {input.r2} \
             --seed 1337 \

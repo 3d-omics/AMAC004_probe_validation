@@ -1,5 +1,11 @@
 # AMAC004_probe_validation
+
 Validation of 16S probes
+
+## Clone repository
+```sh
+git clone https://github.com/3d-omics/AMAC004_probe_validation.git
+```
 
 ## Get reads
 
@@ -10,13 +16,13 @@ cd resources/reads
 wget https://sid.erda.dk/share_redirect/BMewg7xQ8c/G_MG/D300418_1.fq.gz
 wget https://sid.erda.dk/share_redirect/BMewg7xQ8c/G_MG/D300418_2.fq.gz
 # D300419 | G084 | TG4 | 14
-wget https://sid.erda.dk/share_redirect/BMewg7xQ8c/G_MG/D300419_1.fq.gz	
+wget https://sid.erda.dk/share_redirect/BMewg7xQ8c/G_MG/D300419_1.fq.gz
 wget https://sid.erda.dk/share_redirect/BMewg7xQ8c/G_MG/D300419_2.fq.gz
 # D300422 | G036 | TG2 | 21
-wget https://sid.erda.dk/share_redirect/BMewg7xQ8c/G_MG/D300422_1.fq.gz	
+wget https://sid.erda.dk/share_redirect/BMewg7xQ8c/G_MG/D300422_1.fq.gz
 wget https://sid.erda.dk/share_redirect/BMewg7xQ8c/G_MG/D300422_2.fq.gz
 # D300423 | G051 | TG3 | 7
-wget https://sid.erda.dk/share_redirect/BMewg7xQ8c/G_MG/D300423_1.fq.gz	
+wget https://sid.erda.dk/share_redirect/BMewg7xQ8c/G_MG/D300423_1.fq.gz
 wget https://sid.erda.dk/share_redirect/BMewg7xQ8c/G_MG/D300423_2.fq.gz
 cd ../../
 ```
@@ -26,7 +32,7 @@ cd ../../
 ```sh
 # Create screen session
 screen -S probe_validation
-# screen -r probe_validation #if re-starting the session 
+# screen -r probe_validation #if re-starting the session
 
 # Load dependencies mamba and snakemake (not needed if they are already installed in root)
 module load mamba/1.5.6 snakemake/7.20.0
