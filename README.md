@@ -3,8 +3,12 @@
 Validation of 16S probes
 
 ## Clone repository
+
+Clone repository and enter into the working directory.
+
 ```sh
 git clone https://github.com/3d-omics/AMAC004_probe_validation.git
+cd AMAC004_probe_validation
 ```
 
 ## Get reads
